@@ -130,3 +130,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+
+
+vim.o.autoread = true
+vim.bo.autoread = true
