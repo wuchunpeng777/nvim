@@ -86,7 +86,7 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set("n", "<leader>qq", "<cmd>qa!<CR>", { desc = "Quit All" })
 
 -- create new buffer
-vim.keymap.set('n', '<leader>n', '<cmd>new<CR>')
+vim.keymap.set('n', '<leader>n', '<cmd>enew<CR>')
 
 -- remap esc
 vim.keymap.set("i", "jj", "<ESC>", { silent = true })
