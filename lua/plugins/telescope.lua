@@ -22,9 +22,13 @@ return { -- Fuzzy Finder (files, lsp, etc)
         enabled = vim.g.have_nerd_font
     }},
     keys = {
-        {"<leader>fc",   "<cmd>lua require('telescope.builtin').lsp_document_symbols({show_line=true,symbols='method'})<cr>"},
-        {"<leader>fg",   "<cmd>lua require('telescope.builtin').lsp_workspace_symbols({show_line=true,symbols='method'})<cr>"},
-    },
+        {'<leader>fg','<cmd>lua require("telescopePickers").prettyWorkspaceSymbols({symbols = {"method","function"}})<cr>'},
+        {'<leader>fc','<cmd>lua require("telescopePickers").prettyDocumentSymbols({symbols = {"method","function"}})<cr>'},
+        {'<leader>ff','<cmd>lua require("telescopePickers").prettyFilesPicker({picker="find_files"})<cr>'},
+        {'<leader>fr','<cmd>lua require("telescopePickers").prettyFilesPicker({picker="oldfiles"})<cr>'},
+        {'<leader><leader>','<cmd>lua require("telescopePickers").prettyBuffersPicker()<cr>'},
+        {'<leader>fs','<cmd>lua require("telescopePickers").prettyGrepPicker({picker="live_grep"})<cr>'},
+        },
     config = function()
         -- Telescope is a fuzzy finder that comes with a lot of different things that
         -- it can fuzzy find! It's more than just a "file finder", it can search
@@ -44,8 +48,8 @@ return { -- Fuzzy Finder (files, lsp, etc)
         -- This opens a window that shows you all of the keymaps for the current
         -- Telescope picker. This is really useful to discover what Telescope can
         -- do as well as how to actually do it!
-
         -- [[ Configure Telescope ]]
+
         -- See `:help telescope` and `:help telescope.setup()`
         require('telescope').setup {
             -- You can put your default mappings / updates / etc. in here
@@ -75,23 +79,14 @@ return { -- Fuzzy Finder (files, lsp, etc)
         vim.keymap.set('n', '<leader>fk', builtin.keymaps, {
             desc = '[S]earch [K]eymaps'
         })
-        vim.keymap.set('n', '<leader>ff', builtin.find_files, {
-            desc = '[S]earch [F]iles'
-        })
+        -- vim.keymap.set('n', '<leader>ff', builtin.find_files, {
+        --     desc = '[S]earch [F]iles'
+        -- })
 
         -- vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
         -- vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-        vim.keymap.set('n', '<leader>fs', builtin.live_grep, {
-            desc = '[S]earch by [G]rep'
-        })
         -- vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
         -- vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
-        vim.keymap.set('n', '<leader>fr', builtin.oldfiles, {
-            desc = '[S]earch Recent Files ("." for repeat)'
-        })
-        vim.keymap.set('n', '<leader><leader>', builtin.buffers, {
-            desc = '[ ] Find existing buffers'
-        })
 
         -- Slightly advanced example of overriding default behavior and theme
         vim.keymap.set('n', '<leader>fd', function()
