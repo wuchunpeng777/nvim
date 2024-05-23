@@ -82,6 +82,9 @@ vim.opt.scrolloff = 10
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- quit
+vim.keymap.set("n", "<leader>qq", "<cmd>qa!<CR>", { desc = "Quit All" })
+
 -- create new buffer
 vim.keymap.set('n', '<leader>n', '<cmd>new<CR>')
 
