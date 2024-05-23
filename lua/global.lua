@@ -134,3 +134,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 vim.o.autoread = true
 vim.bo.autoread = true
+
+-- vim.cmd([[nnoremap <leader>cd:cd%:p:h<CR>:pwd<CR>]])
+
+vim.keymap.set("n", "<leader>cd", ":cd%:p:h<CR>:pwd<cr>", { silent = true })
