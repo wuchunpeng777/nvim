@@ -3,10 +3,10 @@ return {
     version = '*',
     dependencies = {'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
     'MunifTanjim/nui.nvim'},
-    keys = {{'<leader>e', ':Neotree toggle<CR>', {
-        desc = 'NeoTree toggle'
-    }}},
     config = function()
+
+        vim.keymap.set("n", "<leader>e", ":Neotree toggle<cr>", { silent = true })
+
         -- If you want icons for diagnostic errors, you'll need to define them somewhere:
         vim.fn.sign_define("DiagnosticSignError", {
             text = " ",
@@ -194,7 +194,7 @@ return {
                         -- "node_modules"
                     },
                     hide_by_pattern = { -- uses glob style patterns
-                        -- "*.meta",
+                        "*.meta",
                         -- "*/src/*/tsconfig.json",
                     },
                     always_show = { -- remains visible even if other settings would normally hide it
