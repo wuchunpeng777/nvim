@@ -22,8 +22,8 @@ return { -- Fuzzy Finder (files, lsp, etc)
         enabled = vim.g.have_nerd_font
     }},
     keys = {
-        {'<leader>fg','<cmd>lua require("telescopePickers").prettyWorkspaceSymbols({symbols = {"method","function"}})<cr>'},
-        {'<leader>fc','<cmd>lua require("telescopePickers").prettyDocumentSymbols({symbols = {"method","function"}})<cr>'},
+        {'<leader>fg','<cmd>lua require("telescopePickers").prettyWorkspaceSymbols({})<cr>'},
+        {'<leader>fc','<cmd>lua require("telescopePickers").prettyDocumentSymbols({})<cr>'},
         {'<leader>ff','<cmd>lua require("telescopePickers").prettyFilesPicker({picker="find_files"})<cr>'},
         {'<leader>fr','<cmd>lua require("telescopePickers").prettyFilesPicker({picker="oldfiles"})<cr>'},
         {'<leader><leader>','<cmd>lua require("telescopePickers").prettyBuffersPicker()<cr>'},
