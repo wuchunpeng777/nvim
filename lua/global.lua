@@ -161,5 +161,7 @@ vim.keymap.set('n', "<leader>op", ":!start explorer.exe %:p:h,/e<CR>", {
     silent = true
 })
 elseif vim.fn.has "mac" == 1 then
-  vim.keymaps.set('n','<leader>op','![ -f "%:p" ] && open -R "%:p" || open "%:p:h"',{silent = true})
+  vim.keymap.set('n','<leader>op','![ -f "%:p" ] && open -R "%:p" || open "%:p:h"',{silent = true})
 end
+
+vim.keymap.set('n','<leader>ca','<cmd>lua vim.lsp.buf.code_action()<CR>',{silent = true})
