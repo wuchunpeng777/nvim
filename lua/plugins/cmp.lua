@@ -23,7 +23,12 @@ return { -- Autocompletion
             --     require('luasnip.loaders.from_vscode').lazy_load()
             --   end,
             -- },
-        }
+        },
+        config = function()
+            local ls = require('luasnip')
+
+            ls.add_snippets(nil, require('custom.snippets'))
+        end
     }, 'saadparwaiz1/cmp_luasnip', -- Adds other completion capabilities.
     --  nvim-cmp does not ship with all sources by default. They are split
     --  into multiple repos for maintenance purposes.
