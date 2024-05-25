@@ -12,9 +12,19 @@ local date = function()
 end
 
 return {
-    all = {snip({
-        trig = "date",
-        namr = "Date",
-        dscr = "Date in the form of YYYY-MM-DD"
-    }, {func(date, {})})}
+    all = {
+        snip(
+            {
+                trig = "date",
+                namr = "Date",
+                dscr = "Date in the form of YYYY-MM-DD"
+            },
+            {
+                func(date, {})
+            }
+        )
+    },
+    lua = {
+
+    }
 }
