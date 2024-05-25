@@ -24,9 +24,9 @@ return {
                 auto_trigger = true,
                 debounce = 75,
                 keymap = {
-                    accept = "<tab>",
+                    accept = "<C-o>",
                     accept_word = false,
-                    accept_line = false,
+                    accept_line = false
                     -- next = "<C-]>",
                     -- prev = "<C-[>",
                     -- dismiss = "<C-\\>"
