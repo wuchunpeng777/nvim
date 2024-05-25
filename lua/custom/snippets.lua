@@ -25,6 +25,25 @@ return {
         )
     },
     lua = {
-
+        snip(
+            {
+                trig = "listen",
+                name = "listen event",
+                dscr = "listen event"
+            },
+            {
+                text("self:RegisterEventListener(LuaEventKey"),
+            }
+        ),
+        snip(
+            {
+                trig = "send",
+                name = "send event",
+                dscr = "send event"
+            },
+            {
+                text("UE.UEventBPLib.SendEvent(BP_GameInstance_Inst, LuaEventKey"),
+            }
+        ),
     }
 }
