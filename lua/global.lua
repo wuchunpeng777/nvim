@@ -2,7 +2,7 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-vim.opt.tabstop=4
+vim.opt.tabstop = 4
 
 -- optionally enable 24-bit colour
 vim.opt.termguicolors = true
@@ -14,7 +14,6 @@ vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
-vim.o.guifont = "JetBrainsMono Nerd Font:h12"
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -159,9 +158,13 @@ vim.keymap.set("n", "<leader>cd", ":cd%:p:h<CR>:pwd<cr>", {
 })
 
 if vim.fn.has "win32" == 1 then
-vim.keymap.set('n', "<leader>op", ":!start explorer.exe %:p:h,/e<CR>", {
-    silent = true
-})
+    vim.keymap.set('n', "<leader>op", ":!start explorer.exe %:p:h,/e<CR>", {
+        silent = true
+    })
+
+    vim.o.guifont = "JetBrainsMono Nerd Font:h12"
 elseif vim.fn.has "mac" == 1 then
-  vim.keymap.set('n','<leader>op','![ -f "%:p" ] && open -R "%:p" || open "%:p:h"',{silent = true})
+    vim.keymap.set('n', '<leader>op', '![ -f "%:p" ] && open -R "%:p" || open "%:p:h"', { silent = true })
+
+    vim.o.guifont = "JetBrainsMono Nerd Font:h16"
 end
