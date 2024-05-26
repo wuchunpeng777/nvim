@@ -158,13 +158,7 @@ vim.keymap.set("n", "<leader>cd", ":cd%:p:h<CR>:pwd<cr>", {
 })
 
 if vim.fn.has "win32" == 1 then
-    vim.keymap.set('n', "<leader>op", ":!start explorer.exe %:p:h,/e<CR>", {
-        silent = true
-    })
-
     vim.o.guifont = "JetBrainsMono Nerd Font:h12"
 elseif vim.fn.has "mac" == 1 then
-    vim.keymap.set('n', '<leader>op', '![ -f "%:p" ] && open -R "%:p" || open "%:p:h"', { silent = true })
-
     vim.o.guifont = "JetBrainsMono Nerd Font:h16"
 end
