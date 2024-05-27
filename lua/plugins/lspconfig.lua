@@ -1,21 +1,22 @@
-return { -- LSP Configuration & Plugins
+return {             -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = { -- Automatically install LSPs and related tools to stdpath for Neovim
-    {
-        'williamboman/mason.nvim',
-        config = true
-    }, -- NOTE: Must be loaded before dependants
-    'williamboman/mason-lspconfig.nvim', 'WhoIsSethDaniel/mason-tool-installer.nvim', -- Useful status updates for LSP.
-    -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-    {
-        'j-hui/fidget.nvim',
-        opts = {}
-    }, -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
-    -- used for completion, annotations and signatures of Neovim apis
-    {
-        'folke/neodev.nvim',
-        opts = {}
-    }},
+        {
+            'williamboman/mason.nvim',
+            config = true
+        },                                                                                -- NOTE: Must be loaded before dependants
+        'williamboman/mason-lspconfig.nvim', 'WhoIsSethDaniel/mason-tool-installer.nvim', -- Useful status updates for LSP.
+        -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+        {
+            'j-hui/fidget.nvim',
+            opts = {}
+        }, -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
+        -- used for completion, annotations and signatures of Neovim apis
+        {
+            'folke/neodev.nvim',
+            opts = {}
+        },
+     },
     config = function()
         -- Brief aside: **What is LSP?**
         --
@@ -66,7 +67,7 @@ return { -- LSP Configuration & Plugins
                 -- Jump to the definition of the word under your cursor.
                 --  This is where a variable was first declared, or where a function is defined, etc.
                 --  To jump back, press <C-t>.
-                map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+                -- map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
 
                 -- Find references for the word under your cursor.
                 -- map('gu', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
@@ -114,13 +115,13 @@ return { -- LSP Configuration & Plugins
                     local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', {
                         clear = false
                     })
-                    vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
+                    vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
                         buffer = event.buf,
                         group = highlight_augroup,
                         callback = vim.lsp.buf.document_highlight
                     })
 
-                    vim.api.nvim_create_autocmd({'CursorMoved', 'CursorMovedI'}, {
+                    vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
                         buffer = event.buf,
                         group = highlight_augroup,
                         callback = vim.lsp.buf.clear_references
@@ -195,7 +196,7 @@ return { -- LSP Configuration & Plugins
                         -- diagnostics = { disable = { 'missing-fields' } },
                     }
                 }
-            }
+            },
         }
 
         -- Ensure the servers and tools above are installed
@@ -209,21 +210,65 @@ return { -- LSP Configuration & Plugins
         -- You can add other tools here that you want Mason to install
         -- for you, so that they are available from within Neovim.
         local ensure_installed = vim.tbl_keys(servers or {})
-        vim.list_extend(ensure_installed, {'stylua' -- Used to format Lua code
+        vim.list_extend(ensure_installed, { 'stylua' -- Used to format Lua code
         })
         require('mason-tool-installer').setup {
             ensure_installed = ensure_installed
         }
 
         require('mason-lspconfig').setup {
-            handlers = {function(server_name)
+            handlers = { function(server_name)
                 local server = servers[server_name] or {}
                 -- This handles overriding only values explicitly passed
                 -- by the server configuration above. Useful when disabling
                 -- certain features of an LSP (for example, turning off formatting for tsserver)
                 server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
                 require('lspconfig')[server_name].setup(server)
-            end}
+            end }
         }
+
+        local on_attach = function(_, bufnr)
+            local opts = {
+                noremap = true,
+                silent = true,
+                buffer = bufnr
+            }
+            vim.keymap.set("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
+        end
+        local rounded_border_handlers = {
+            ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+                border = "rounded"
+            }),
+            ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+                border = "rounded"
+            })
+        }
+
+        require("mason-lspconfig").setup_handlers({
+            function(server_name)
+                require("lspconfig")[server_name].setup({
+                    on_attach = on_attach,
+                    capabilities = capabilities,
+                    handlers = rounded_border_handlers
+                })
+            end,
+            ["omnisharp"] = function()
+                require("lspconfig")["omnisharp"].setup({
+                    on_attach = on_attach,
+                    capabilities = capabilities,
+                    root_dir = function(fname)
+                        local lspconfig = require("lspconfig")
+                        local primary = lspconfig.util.root_pattern("*.sln")(fname)
+                        local fallback = lspconfig.util.root_pattern("*.csproj")(fname)
+                        return primary or fallback
+                    end,
+                    analyze_open_documents_only = true,
+                    organize_imports_on_format = true,
+                    handlers = vim.tbl_extend("force", rounded_border_handlers, {
+                        ["textDocument/definition"] = require("omnisharp_extended").handler
+                    })
+                })
+            end
+        })
     end
 }
