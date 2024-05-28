@@ -8,9 +8,11 @@ return {
         -- delete session
         vim.keymap.set('n', '<leader>Sd', '<cmd>SessionManager delete_session<cr>')
 
+
         require('session_manager').setup({
             autoload_mode = 'Disabled',
-            autosave_last_session = false,
+            autosave_last_session = true,
+            autosave_ignore_not_normal = true,
         })
     end
 }
