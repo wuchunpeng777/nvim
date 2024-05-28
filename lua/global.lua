@@ -4,8 +4,8 @@ vim.g.loaded_netrwPlugin = 1
 
 vim.opt.tabstop = 4
 vim.opt.smartindent = true
-vim.opt.shiftwidth=2
-vim.opt.expandtab = true
+vim.opt.shiftwidth=4
+vim.opt.expandtab = false
 
 -- optionally enable 24-bit colour
 vim.opt.termguicolors = true
