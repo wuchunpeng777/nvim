@@ -79,7 +79,7 @@ return {
                     end
                 end,
                 offsets = {{
-                    filetype = "NvimTree",
+                    filetype ="neo-tree",
                     text = "File Explorer", -- | function ,
                     text_align = "center", -- "left" | "center" | "right"
                     separator = true
