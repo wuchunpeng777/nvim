@@ -29,6 +29,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
         {'<leader><leader>','<cmd>lua require("telescopePickers").prettyBuffersPicker()<cr>'},
         {'<leader>fs','<cmd>lua require("telescopePickers").prettyGrepPicker({picker="live_grep"})<cr>'},
         {'<leader>fd','<cmd>Telescope current_buffer_fuzzy_find<cr>'},
+        {'gr','<cmd>Telescope lsp_references<cr>'},
         },
     config = function()
         -- Telescope is a fuzzy finder that comes with a lot of different things that
