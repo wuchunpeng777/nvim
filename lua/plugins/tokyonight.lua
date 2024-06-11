@@ -35,5 +35,7 @@ return { -- You can easily change to a different colorscheme.
         vim.api.nvim_set_hl(0, "WhichKeyFloat", { bg = "none" })
 
         vim.api.nvim_set_hl(0, "CursorLine", { bg = "#006400" })
+
+        vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { fg = "#FB508F" })
     end
 }
