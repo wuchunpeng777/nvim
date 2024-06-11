@@ -24,5 +24,16 @@ return { -- You can easily change to a different colorscheme.
         vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#FB508F', bold = true })
         vim.api.nvim_set_hl(0, 'Comment', { fg = '#7FFFAA', bold = true })
 
+        vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
+        vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "none" })
+        vim.api.nvim_set_hl(0, "TelescopeTitle", { bg = "none" })
+        vim.api.nvim_set_hl(0, "TelescopePromptTitle", { bg = "none" })
+        vim.api.nvim_set_hl(0, "TelescopePromptBorder", { bg = "none" })
+
+        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+
+        vim.api.nvim_set_hl(0, "WhichKeyFloat", { bg = "none" })
+
+        vim.api.nvim_set_hl(0, "CursorLine", { bg = "#006400" })
     end
 }
