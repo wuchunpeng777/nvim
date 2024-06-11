@@ -19,6 +19,7 @@ return { -- You can easily change to a different colorscheme.
         vim.cmd.hi 'Normal ctermbg=none'
         vim.cmd.hi 'NonText ctermbg=none'
         vim.cmd.hi 'Visual guibg=#006400'
+        vim.cmd.hi 'TreesitterContext guibg=none'
         vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = '#51B3EC', bold = true })
         vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#FB508F', bold = true })
         vim.api.nvim_set_hl(0, 'Comment', { fg = '#7FFFAA', bold = true })
