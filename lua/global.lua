@@ -98,10 +98,6 @@ vim.keymap.set("n", "<leader>qq", "<cmd>qa!<CR>", {
 -- create new buffer
 vim.keymap.set('n', '<leader>n', '<cmd>enew<CR>')
 
--- remap esc
-vim.keymap.set("i", "jj", "<ESC>", {
-    silent = true
-})
 
 -- split
 vim.keymap.set('n', '|', '<cmd>vsplit<CR>')
