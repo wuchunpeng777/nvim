@@ -19,6 +19,7 @@ return { -- Collection of various small independent plugins/modules
         require('mini.surround').setup()
 
         require('mini.files').setup({})
+        require('mini.ai').setup({})
         vim.keymap.set('n', '<leader>fi', '<cmd>lua MiniFiles.open()<cr>')
 
         -- require('mini.starter').setup({
