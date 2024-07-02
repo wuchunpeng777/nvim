@@ -23,7 +23,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     }},
     keys = {
         {'<leader>fg','<cmd>lua require("telescopePickers").prettyWorkspaceSymbols({})<cr>'},
-        {'<leader>fc','<cmd>lua require("telescopePickers").prettyDocumentSymbols({})<cr>'},
+        {"<leader>fc",   "<cmd>lua require('telescope.builtin').lsp_document_symbols({show_line=true,symbols='method'})<cr>"},
         {'<leader>ff','<cmd>lua require("telescopePickers").prettyFilesPicker({picker="find_files"})<cr>'},
         {'<leader>fr','<cmd>lua require("telescopePickers").prettyFilesPicker({picker="oldfiles"})<cr>'},
         {'<leader><leader>','<cmd>lua require("telescopePickers").prettyBuffersPicker()<cr>'},
